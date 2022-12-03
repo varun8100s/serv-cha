@@ -1,4 +1,5 @@
-const port = 1212
+const port = process.env.PORT
+console.log("Port selected is: " + port)
 const io = require('socket.io')(port)
 var allClients = []
 io.on('connection', socket => {
@@ -13,6 +14,8 @@ io.on('connection', socket => {
         allClients.splice(i, 1)
         console.log("active: "+allClients.length)
     })
+
+    
 
     socket.on('send-client-message', msg => {
         console.log(msg)
