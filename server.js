@@ -6,12 +6,13 @@ io.on('connection', socket => {
     allClients.push(socket)     
     console.log("new user: " + socket.id)
     console.log("active: "+allClients.length)
-    socket.emit('client-connected', `Connected (${allClients.length} online), send a message...`)
+    io.emit('client-connected', `Connected (${allClients.length} online), send a message...`)
 
     socket.on('disconnect', () => {
         console.log("DISCONNECTED ----------------- "+socket.id)
         var i = allClients.indexOf(socket)
         allClients.splice(i, 1)
+        io.emit('client-connected', `Connected (${allClients.length} online), send a message...`)
         console.log("active: "+allClients.length)
     })
 
