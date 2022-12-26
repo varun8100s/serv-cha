@@ -21,6 +21,11 @@ io.on('connection', socket => {
         console.log(msg)
         socket.broadcast.emit('broadcast', msg)
     })
-    socket.on('client-ip', data=>console.log(data))
+    
+    socket.on('typing', who => {
+        socket.broadcast.emit('someone-typing',who)
+    })
+    
+    
 })
 
