@@ -5,7 +5,7 @@ var allClients = []
 io.on('connection', socket => {
     console.log("active: "+allClients.length)
     allClients.push(socket)     
-    console.log("new user: " + socket.id)
+    console.log("new user: " + socket.id,"ip address:",socket.handshake)
     io.emit('client-connected', `Connected (${allClients.length} online), send a message...`)
     
     socket.on('disconnect', () => {
