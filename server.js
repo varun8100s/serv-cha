@@ -4,7 +4,7 @@ const io = require('socket.io')(port);
 
 io.on('connection', (socket) => {
   console.log(`Active: ${io.clients().server.eio.clientsCount}`);
-  console.log(`New user: ${socket.id}, IP address: `,socket.handshake.headers)
+  console.log(`New user: ${socket.id}, IP address: `,socket.handshake.headers['true-client-ip'])
   io.emit(
     'client-connected',
     `Connected (${io.clients().server.eio.clientsCount} online), send a message...`
